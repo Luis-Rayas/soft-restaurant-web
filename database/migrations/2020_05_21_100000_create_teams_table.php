@@ -13,6 +13,7 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('teams');
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
