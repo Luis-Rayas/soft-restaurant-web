@@ -9,6 +9,8 @@ class Ingrediente extends Model
 {
     use HasFactory;
 
+    protected $table = 'ingredientes';
+
     public function proveedor()
     {
         return $this->hasOne(Proveedor::class);

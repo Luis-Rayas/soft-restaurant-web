@@ -18,8 +18,12 @@ class Platillos extends Migration
             $table->id();
             $table->string('nombre');
             $table->double('precio');
+            $table->string('descripcion');
+            $table->string('img_path');
             $table->unsignedBigInteger('proveedor_id');
             $table->foreign('proveedor_id')->references('id')->on('proveedores');
+            $table->unsignedBigInteger('tipo_alimento_id');
+            $table->foreign('tipo_alimento_id')->references('id')->on('tipo_alimento');
             $table->softDeletes();
         });
     }

@@ -10,4 +10,6 @@ class Platillo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'platillos';
 }
