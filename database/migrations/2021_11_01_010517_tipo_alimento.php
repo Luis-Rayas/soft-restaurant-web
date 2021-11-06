@@ -17,6 +17,7 @@ class TipoAlimento extends Migration
         Schema::create('tipo_alimento', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->softDeletes();
         });
     }
 

@@ -23,6 +23,7 @@ class OrdenDetalles extends Migration
             $table->unsignedBigInteger('estadoOrden_id');
             $table->foreign('estadoOrden_id')->references('id')->on('estado_ordenes');
             $table->timestamp('fecha');
+            $table->softDeletes();
         });
     }
 

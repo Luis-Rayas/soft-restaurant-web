@@ -17,6 +17,7 @@ class OrdenEstado extends Migration
         Schema::create('orden_estado', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->softDeletes();
         });
     }
 

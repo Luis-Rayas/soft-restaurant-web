@@ -21,6 +21,7 @@ class Ingredientes extends Migration
             $table->double('costo');
             $table->unsignedBigInteger('id_proveedor');
             $table->foreign('id_proveedor')->references('id')->on('proveedores');
+            $table->softDeletes();
         });
     }
 

@@ -13,6 +13,6 @@ class tipoAlimentoSeeder extends Seeder
      */
     public function run()
     {
-
+        \App\Models\TipoAlimento::factory(10)->create();
     }
 }

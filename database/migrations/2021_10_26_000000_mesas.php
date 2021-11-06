@@ -18,6 +18,7 @@ class Mesas extends Migration
             $table->id();
             $table->boolean('disponible');
             $table->integer('cant_personas');
+            $table->softDeletes();
         });
     }
 

@@ -21,6 +21,7 @@ class PlatillosIngredientes extends Migration
             $table->unsignedBigInteger('ingrediente_id');
             $table->foreign('ingrediente_id')->references('id')->on('ingredientes');
             $table->double('costo')->nullable();
+            $table->softDeletes();
         });
     }
 
