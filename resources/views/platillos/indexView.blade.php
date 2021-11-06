@@ -21,7 +21,7 @@
                         <td>{{ $alimento->descripcion }}</td>
                         <td>${{ $alimento->precio }}</td>
                         <td class="d-flex justify-content-center">
-                            <a class='btn btn-lg btn-primary mx-1' href="{{ url('platillos/editView')}}">
+                            <a class='btn btn-lg btn-primary mx-1' href="{{ url('platillos/edit/'.$alimento->id)}}">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a class='btn btn-lg btn-primary mx-1' href="">
