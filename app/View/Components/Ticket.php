@@ -2,24 +2,18 @@
 
 namespace App\View\Components;
 
-use App\Models\Mesa;
 use Illuminate\View\Component;
 
-class MesaCard extends Component
+class Ticket extends Component
 {
-    public $id;
-    public $cantPersonas;
-    public $disponible;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($id, $cantPersonas, $disponible)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->cantPersonas = $cantPersonas;
-        $this->disponible = $disponible;
+        //
     }
 
     /**
@@ -29,6 +23,6 @@ class MesaCard extends Component
      */
     public function render()
     {
-        return view('components.mesa-card');
+        return view('components.ticket');
     }
 }

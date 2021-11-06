@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IngredienteController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\MesaController;
 use App\Http\Controllers\PlatilloController;
 use App\Http\Controllers\ProveedorController;
 use App\Models\Proveedor;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('mainIndex');
+
+Route::get('/mesas', [MesaController::class, 'index'])->name('MesaIndex');
 
 Route::get('/platillos', [PlatilloController::class, 'index'])->name('platilloIndex');
 Route::get('/platillos/edit/{id}', [PlatilloController::class, 'edit'])->name('platilloEdit');

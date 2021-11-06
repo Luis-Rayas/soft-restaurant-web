@@ -16,7 +16,7 @@ class Mesas extends Migration
         Schema::dropIfExists('mesas');
         Schema::create('mesas', function (Blueprint $table) {
             $table->id();
-            $table->boolean('disponible');
+            $table->boolean('disponible')->default(true);
             $table->integer('cant_personas');
             $table->softDeletes();
         });
