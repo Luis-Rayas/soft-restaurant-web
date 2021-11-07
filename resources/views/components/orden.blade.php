@@ -43,7 +43,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="" class="btn btn-secondary">Cerrar orden</a>
+            <a href="#modal-closed" class="btn btn-secondary">Cerrar orden</a>
         </div>
         <div class="card-footer text-muted">
             Fecha: {{ date('d/m/Y H:H:s') }}

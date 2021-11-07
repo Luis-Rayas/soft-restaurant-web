@@ -19,7 +19,7 @@
                 <div class="alert alert-danger" role="alert">
                     Mesa Ocupada
                 </div>
-                <a href="#" class="btn btn-secondary">
+                <a href="#modal-opened" class="btn btn-secondary">
                     Ver orden abierta
                 </a>
             @endif

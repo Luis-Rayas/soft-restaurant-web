@@ -1,6 +1,7 @@
 <x-principal-layout>
     <x-nav-bar/>
 
+
     <div class="container">
         <div class="row">
         @foreach ($mesas as $mesa)
@@ -8,13 +9,11 @@
             <x-mesa-card id="{{$mesa->id}}" cant-personas="{{$mesa->cant_personas}}" disponible="{{$mesa->disponible}}"/>
             <br>
         </div>
-
         @endforeach
         </div>
     </div>
 
     <div class="container">
-        <x-orden/>
+        <x-orden id="modal-opened"/>
     </div>
-
 </x-principal-layout>
