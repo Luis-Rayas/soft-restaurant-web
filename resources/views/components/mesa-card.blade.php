@@ -19,7 +19,7 @@
                 <div class="alert alert-danger" role="alert">
                     Mesa Ocupada
                 </div>
-                <a href="#modal-opened" class="btn btn-secondary">
+                <a href="'/mesas/{{$id}}/orden" class="btn btn-secondary">
                     Ver orden abierta
                 </a>
             @endif

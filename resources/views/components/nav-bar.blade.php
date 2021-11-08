@@ -13,18 +13,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('mainIndex')}}">MENU</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="Submenu-Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Platillos
-                    </a>
-                    <ul class="dropdown-menu rounded-3" aria-labelledby="Submenu-Dropdown">
-                        <li><a class="dropdown-item" href="{{route('platilloIndex')}}">Todo</a></li>
-                        <li><a class="dropdown-item" href="#">Alimentos</a></li>
-                        <li><a class="dropdown-item" href="#">Bebidas</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('mesaIndex')}}">Mesas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('MesaIndex')}}">Mesas</a>
+                    <a class="nav-link" href="{{route('platilloIndex')}}">Platillos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('ingredienteIndex')}}">Ingredientes</a>

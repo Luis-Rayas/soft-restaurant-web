@@ -12,6 +12,7 @@ class Ingrediente extends Model
     use SoftDeletes;
 
     protected $table = 'ingredientes';
+    public $timestamps = false;
 
     public function proveedor()
     {

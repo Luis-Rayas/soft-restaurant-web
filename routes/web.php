@@ -20,8 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('mainIndex');
+Route::get('/ticket', [MainController::class, 'printTicket'])->name('printTicket');
 
-Route::get('/mesas', [MesaController::class, 'index'])->name('MesaIndex');
+Route::get('/mesas', [MesaController::class, 'index'])->name('mesaIndex');
+Route::get('/mesas/{id_mesa}/orden', [MesaController::class, 'viewOrdenByMesa']);
 
 Route::get('/platillos', [PlatilloController::class, 'index'])->name('platilloIndex');
 Route::get('/platillos/edit/{id}', [PlatilloController::class, 'edit'])->name('platilloEdit');
@@ -33,7 +35,7 @@ Route::get('/ingredientes/create', [IngredienteController::class, 'edit'])->name
 
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedorIndex');
 Route::get('/proveedores/edit/{id}', [ProveedorController::class, 'edit'])->name('proveedorEdit');
-Route::get('/proveedores/create', [ProveedorController::class, 'index'])->name('proveedorCreate');
+Route::get('/proveedores/create', [ProveedorController::class, 'create'])->name('proveedorCreate');
 Route::get('/mail', [ProveedorController::class, 'sendMail']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

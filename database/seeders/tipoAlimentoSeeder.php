@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class tipoAlimentoSeeder extends Seeder
 {
@@ -13,6 +14,11 @@ class tipoAlimentoSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\TipoAlimento::factory(10)->create();
+        DB::table('tipo_alimento')->insert([
+            'nombre' => 'Alimentos',
+        ]);
+        DB::table('tipo_alimento')->insert([
+            'nombre' => 'Bebidas',
+        ]);
     }
 }

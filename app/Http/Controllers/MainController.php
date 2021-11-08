@@ -12,4 +12,9 @@ class MainController extends Controller
         $platillos = Platillo::all();
         return view('main.indexView')->with(['platillos' => $platillos]);
     }
+
+    public function printTicket(/*int $mesa_id, int $orden_id*/)
+    {
+        return view('components.ticket');
+    }
 }

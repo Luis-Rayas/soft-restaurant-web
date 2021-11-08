@@ -3,7 +3,7 @@
         {{ $nombre }}
     </div>
     <div class="card-body">
-        <img src="{{ $img_path }}" alt="">
+        <img src="{{ asset('img/menu/1Hamburguesa.jpg') }}" alt="">
         <p class="card-text">
             {{ $descripcion }}
         <div class="card-footer text-muted">

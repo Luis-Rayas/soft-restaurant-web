@@ -10,4 +10,6 @@ class Mesa extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public $timestamps = false;
 }

@@ -5,7 +5,7 @@
 
         <a class="btn btn-primary float-right" href="{{ url('platillos/store')}}">Agregar nuevo platillo</a>
         <h2 class="h2 d-inline">Alimentos</h2>
-        <table class="table table-responsive table-dark text-center">
+        <table class="table table-responsive table-dark table-striped text-center">
             <thead>
                 <tr>
                     <th scope="col" style="width: 20%">Platillo</th>
@@ -17,10 +17,10 @@
             <tbody>
                 @foreach ($alimentos as $alimento)
                     <tr>
-                        <td>{{ $alimento->nombre }}</td>
+                        <th scope="row">{{ $alimento->nombre }}</th>
                         <td>{{ $alimento->descripcion }}</td>
                         <td>${{ $alimento->precio }}</td>
-                        <td class="d-flex justify-content-center">
+                        <td>
                             <a class='btn btn-lg btn-primary mx-1' href="{{ url('platillos/edit/'.$alimento->id)}}">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -35,7 +35,7 @@
 
         <button class="btn btn-primary float-right">Agregar nueva bebida</button>
         <h2 class="h2 d-inline">Bebidas</h2>
-        <table class="table table-responsive table-dark text-center">
+        <table class="table table-responsive table-dark table-striped text-center">
             <thead>
                 <tr>
                     <th scope="col" style="width: 20%">Bebidas</th>
@@ -50,7 +50,7 @@
                         <td>{{ $bebida->nombre }}</td>
                         <td>{{ $bebida->descripcion }}</td>
                         <td>${{ $bebida->precio }}</td>
-                        <td class="d-flex justify-content-center">
+                        <td>
                             <a class='btn btn-lg btn-primary mx-1' href="#">
                                 <i class="fas fa-edit"></i>
                             </a>

@@ -20,7 +20,7 @@ class Proveedores extends Migration
             $table->string('rfc')->nullable(true);
             $table->string('direccion')->nullable(true);
             $table->string('contacto');
-            $table->timestamp('fh_alta')->useCurrent();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

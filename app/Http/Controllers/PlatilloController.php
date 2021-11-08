@@ -33,6 +33,6 @@ class PlatilloController extends Controller
 
     public function delete(int $id)
     {
-
+        
     }
 }

@@ -12,8 +12,4 @@
         @endforeach
         </div>
     </div>
-
-    <div class="container">
-        <x-orden id="modal-opened"/>
-    </div>
 </x-principal-layout>

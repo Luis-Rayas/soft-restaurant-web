@@ -36,22 +36,6 @@
                     </div>
                 @endforeach
             </div>
-            <div class="form-group">
-                <div class="row">
-                    @foreach ($proveedores as $proveedor)
-                    <div class="col-6">
-                        <select class="select" name="" id="">
-                            @foreach ($proveedores as $proveedor)
-                                <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-6">
-                        <input class="" type="text" placeholder="Costo de proveedor">
-                    </div>
-                    @endforeach
-                </div>
-            </div>
             <input class="btn btn-primary" type="submit" value="Guardar">
         </form>
     </div>

@@ -21,9 +21,13 @@ class PlatilloFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($this->faker));
         return [
-            'nombre' => $this->faker->name,
-            'precio' => $this->faker->randomDigitNotZero(),
+            'nombre' => $this->faker->foodName(),
+            'precio' => $this->faker->numberBetween(1, 500),
+            'descripcion' => $this->faker->realText(200, 2),
+            'img_path' => $this->faker->mimeType(),
+            'tipo_alimento_id' => $this->faker->numberBetween(1, 2)
         ];
     }
 }

@@ -11,5 +11,6 @@ class Platillo extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public $timestamps = false;
     protected $table = 'platillos';
 }

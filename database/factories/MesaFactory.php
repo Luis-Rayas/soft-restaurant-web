@@ -2,18 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class tipoAlimentoFactory extends Factory
+class MesaFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Model::class;
-
     /**
      * Define the model's default state.
      *
@@ -22,7 +14,8 @@ class tipoAlimentoFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->name
+            'disponible' => boolval($this->faker->numberBetween(0,1)),
+            'cant_personas' => $this->faker->numberBetween(1, 20)
         ];
     }
 }
