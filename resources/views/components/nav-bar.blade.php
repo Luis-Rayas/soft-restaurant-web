@@ -25,6 +25,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('proveedorIndex')}}">Proveedores</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('ordenIndex')}}">Ordenes</a>
+                </li>
             </ul>
 
             <!-- Right Side -->

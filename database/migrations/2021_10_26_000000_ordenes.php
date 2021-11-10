@@ -20,7 +20,7 @@ class Ordenes extends Migration
             $table->foreign('mesa_id')->references('id')->on('mesas');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamp('fecha')->useCurrent();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\IngredienteController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MesaController;
+use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PlatilloController;
 use App\Http\Controllers\ProveedorController;
 use App\Models\Proveedor;
@@ -37,6 +38,8 @@ Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveed
 Route::get('/proveedores/edit/{id}', [ProveedorController::class, 'edit'])->name('proveedorEdit');
 Route::get('/proveedores/create', [ProveedorController::class, 'create'])->name('proveedorCreate');
 Route::get('/mail', [ProveedorController::class, 'sendMail']);
+
+Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenIndex');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
