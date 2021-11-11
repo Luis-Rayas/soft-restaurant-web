@@ -24,6 +24,8 @@ Route::get('/', [MainController::class, 'index'])->name('mainIndex');
 Route::get('/ticket', [MainController::class, 'printTicket'])->name('printTicket');
 
 Route::get('/mesas', [MesaController::class, 'index'])->name('mesaIndex');
+Route::get('/mesas/create', [MesaController::class, 'create'])->name('mesaCreate');
+Route::get('/mesas/edit/{id}', [MesaController::class, 'edit'])->name('mesaEdit');
 Route::get('/mesas/{id_mesa}/orden', [MesaController::class, 'viewOrdenByMesa']);
 
 Route::get('/platillos', [PlatilloController::class, 'index'])->name('platilloIndex');

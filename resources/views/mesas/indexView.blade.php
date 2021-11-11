@@ -3,6 +3,9 @@
 
 
     <div class="container">
+        <div class="container">
+            <a href="{{ route('mesaCreate') }}" class="btn btn-primary">Agregar nueva mesa</a>
+        </div>
         <div class="row">
         @foreach ($mesas as $mesa)
         <div class="col-sm-4">

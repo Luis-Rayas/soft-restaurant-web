@@ -2,12 +2,11 @@
     <x-nav-bar/>
 
     <div class="container">
-        {{$ordenes}}
 
         <label for="fecha1">Fecha Inicial</label>
-        <input type="date">
+        <input type="date" value="{{$fecha1}}">
         <label for="">Fecha final</label>
-        <input type="date">
+        <input type="date" value="{{$fecha2}}">
 
         <table class="table table-responsive table-dark table-striped text-center">
             <thead>
