@@ -17,25 +17,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="{{ route('mesaStore') }}" method="POST">
                         <div class="">
                             @csrf
                             <div class="form-group">
                                 <label for="formFile" class="form-label">Cantidad de personas</label>
-                                <input class="form-control" type="number" id="formFile">
+                                <input class="form-control" type="number" id="cant_personas" name="cant_personas">
                             </div>
+                            <input class="btn btn-primary" type="submit" value="Añadir">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Añadir</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
+        @error('cant_personas')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <div class="container">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -52,32 +55,6 @@
             @endforeach
         </div>
     </div>
-
-    <div id="miModal" class="modal fade" role="dialog">
-        @if (isset($mesa) && isset($mesa->id))
-            <h1>Mesa No. {{ $mesa->id }}</h1>
-        @else
-            <h1>Mesa nueva</h1>
-        @endif
-
-        <form>
-            @csrf
-            <input type="hidden" name="id" @if (isset($mesa) && isset($mesa->id))
-            value="{{ $mesa->id }}"
-            @endif
-            >
-    </div>
-    <div class="form-group">
-        <label for="ingrediente-precio">Cantidad de personas</label>
-        <input type="number" name="ingrediente-precio" class="form-control" id="platillo-name" placeholder="0.0"
-            @if (isset($mesa) && isset($mesa->cant_personas))
-        value="{{ $mesa->cant_personas }}"
-        @endif>
-    </div>
-    <input class="btn btn-primary" type="submit" value="Guardar">
-    </form>
-    </div>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

@@ -19,6 +19,18 @@ class MesaController extends Controller
         return view('mesas.editView');
     }
 
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'cant_personas' => 'required|numeric|min:1'
+        ]);
+
+        $mesa = new Mesa();
+        $mesa->cant_personas = $request->cant_personas;
+        $mesa->save();
+        return redirect()->route('mesaIndex');
+    }
+
     public function edit(int $mesa_id)
     {
         $mesa = Mesa::find($mesa_id);
