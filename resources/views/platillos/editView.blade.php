@@ -4,7 +4,8 @@
     <div class="container">
         <div class="d-flex justify-content-center">
             @if (isset($platillo) && $platillo->img_path == asset('img/menu/' . $platillo->id . $platillo->nombre . '.jpg'))
-                <img src="{{ asset('img/menu/' . $platillo->id . $platillo->nombre . '.jpg') }}" alt="Imagen de platillo">
+                <img src="{{ asset('img/menu/' . $platillo->id . $platillo->nombre . '.jpg') }}"
+                    alt="Imagen de platillo">
             @else
                 <img src="{{ asset('img/menu/img-not-found.jpg') }}" alt="Imagen de platillo">
             @endif
@@ -44,15 +45,20 @@
                 @endif>
             </div>
             <label for="">Ingredientes del platillo</label>
+
+
             <div class="row">
                 @foreach ($ingredientes as $ingrediente)
                     <div class="col-sm-4">
-                        <div class="form-check">
-                            <input type="hidden" name="ingrediente_id" id="ingrediente_id">
-                            <input type="checkbox" name="ingrediente_nombre" id="ingrediente_nombre">
-                            <label for="">{{$ingrediente->nombre}}</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                                <span class="input-group-text">0.00</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                         </div>
                     </div>
+
                 @endforeach
             </div>
             <input class="btn btn-primary" type="submit" value="Guardar">
