@@ -10,7 +10,7 @@
                 <img src="{{ asset('img/menu/img-not-found.jpg') }}" alt="Imagen de platillo">
             @endif
         </div>
-        <form>
+        <form method="POST">
             @csrf
             <input type="hidden" name="id" @if (isset($platillo) && isset($platillo->id))
             value="{{ $platillo->id }}"

@@ -14,6 +14,12 @@ class MesaController extends Controller
         return view('mesas.indexView')->with(['mesas' => $mesas]);
     }
 
+    public function findById(int $id)
+    {
+        $mesa = Mesa::find($id);
+        return $mesa->toJson();
+    }
+
     public function create()
     {
         return view('mesas.editView');
@@ -37,9 +43,26 @@ class MesaController extends Controller
         return view('mesas.editView')->with(['mesa' => $mesa]);
     }
 
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'cant_personas' => 'required|numeric|min:1'
+        ]);
+        $mesa = Mesa::find($request->id_mesa);
+        $mesa->cant_personas = $request->cant_personas;
+        $mesa->save();
+        return redirect()->route('mesaIndex');
+    }
+
     public function viewOrdenByMesa(int $mesa_id)
     {
         $platillos = Platillo::all();
         return view('orden.addPlatillo')->with(['platillos' => $platillos]);
+    }
+
+    public function delete(Request $request)
+    {
+        $rows_affected = Mesa::destroy($request->id_mesa);
+        return redirect()->route('mesaIndex');
     }
 }

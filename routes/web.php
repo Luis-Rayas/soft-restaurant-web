@@ -24,12 +24,13 @@ Route::get('/', [MainController::class, 'index'])->name('mainIndex');
 Route::get('/ticket', [MainController::class, 'printTicket'])->name('printTicket');
 
 Route::get('/mesas', [MesaController::class, 'index'])->name('mesaIndex');
+Route::get('/mesas/view/{id}', [MesaController::class, 'findById'])->name('mesaView');
 Route::get('/mesas/create', [MesaController::class, 'create'])->name('mesaCreate');
 Route::post('mesas/store', [MesaController::class, 'store'])->name('mesaStore');
 Route::get('/mesas/edit/{id}', [MesaController::class, 'edit'])->name('mesaEdit');
-Route::post('mesas/update/{id}',[MesaController::class, 'update'])->name('mesaUpdate');
+Route::post('mesas/update',[MesaController::class, 'update'])->name('mesaUpdate');
 Route::get('/mesas/{id_mesa}/orden', [MesaController::class, 'viewOrdenByMesa']);
-Route::delete('/mesas/delete/{id}', [MesaController::class, 'delete'])->name('mesaDelete');
+Route::post('/mesas/delete', [MesaController::class, 'delete'])->name('mesaDelete');
 
 Route::get('/platillos', [PlatilloController::class, 'index'])->name('platilloIndex');
 Route::get('platillos/view/{id}', [PlatilloController::class, 'view'])->name('platilloView');
