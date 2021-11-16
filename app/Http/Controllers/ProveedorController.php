@@ -21,6 +21,22 @@ class ProveedorController extends Controller
         return view('proveedores.editView');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([]);
+        $proveedor = new Proveedor();
+        if(isset($request->id)){
+            $proveedor = Proveedor::find($request->id);
+        }
+        $proveedor->nombre = $request->nombre;
+        $proveedor->rfc = $request->rfc;
+        $proveedor->direccion = $request->direccion;
+        $proveedor->contacto = $request->contacto;
+        $proveedor->save();
+
+        return redirect()->route('proveedorIndex');
+    }
+
     public function edit(int $id)
     {
         $proveedor = Proveedor::find($id);
@@ -29,7 +45,8 @@ class ProveedorController extends Controller
 
     public function delete(int $id)
     {
-        # code...
+        Proveedor::destroy($id);
+        return redirect()->route('proveedorIndex');
     }
 
     public function sendMail()

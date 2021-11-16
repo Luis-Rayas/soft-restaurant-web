@@ -54,7 +54,7 @@ Route::get('/proveedores/create', [ProveedorController::class, 'create'])->name(
 Route::post('/proveedores/store', [ProveedorController::class, 'store'])->name('proveedorStore');
 Route::get('/proveedores/edit/{id}', [ProveedorController::class, 'edit'])->name('proveedorEdit');
 Route::post('/proveedores/update/{id}', [ProveedorController::class, 'update'])->name('proveedorUpdate');
-Route::delete('/proveedores/delete/{id}', [ProveedorController::class, 'delete'])->name('proveedorDelete');
+Route::get('/proveedores/delete/{id}', [ProveedorController::class, 'delete'])->name('proveedorDelete');
 Route::get('/proveedores/{id}/viewMail', [ProveedorController::class, 'viewMail'])->name('proveedorMailView');
 Route::get('/proveedores/{id}/sendMail', [ProveedorController::class, 'sendMail'])->name('proveedorMail');
 

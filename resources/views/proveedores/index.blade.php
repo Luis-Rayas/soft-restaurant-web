@@ -22,10 +22,10 @@
                         <td>{{ $proveedor->direccion }}</td>
                         <td>{{ $proveedor->contacto }}</td>
                         <td class="d-flex justify-content-center">
-                            <a class='btn btn-lg btn-primary mx-1' href="{{ url('proveedores/edit/' .$proveedor->id) }}">
+                            <a class='btn btn-lg btn-primary mx-1' href="{{ route('proveedorStore', $proveedor->id) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class='btn btn-lg btn-primary mx-1' href="">
+                            <a class='btn btn-lg btn-primary mx-1' href="{{ route('proveedorDelete', $proveedor->id, ) }}">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                             <a class='btn btn-lg btn-primary mx-1' href="">
