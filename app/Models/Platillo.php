@@ -13,4 +13,9 @@ class Platillo extends Model
 
     public $timestamps = false;
     protected $table = 'platillos';
+
+    public function ingredientes()
+    {
+        return $this->belongsToMany(Ingrediente::class, 'platillos_ingredientes');
+    }
 }
