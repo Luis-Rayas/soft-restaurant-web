@@ -2,7 +2,7 @@
     <x-nav-bar/>
 
     <div class="container">
-        <a class="btn btn-primary float-right" href="{{ url('proveedores/create')}}">Agregar nuevo proveedor</a>
+        <a class="btn btn-primary float-right" href="{{ route('proveedorCreate') }}">Agregar nuevo proveedor</a>
         <h2 class="h2 d-inline">Proveedores</h2>
         <table class="table table-responsive table-dark text-center">
             <thead>
@@ -22,7 +22,7 @@
                         <td>{{ $proveedor->direccion }}</td>
                         <td>{{ $proveedor->contacto }}</td>
                         <td class="d-flex justify-content-center">
-                            <a class='btn btn-lg btn-primary mx-1' href="{{ route('proveedorStore', $proveedor->id) }}">
+                            <a class='btn btn-lg btn-primary mx-1' href="{{ route('proveedorEdit', $proveedor->id) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a class='btn btn-lg btn-primary mx-1' href="{{ route('proveedorDelete', $proveedor->id, ) }}">
