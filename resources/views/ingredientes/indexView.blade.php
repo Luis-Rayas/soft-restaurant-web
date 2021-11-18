@@ -139,14 +139,15 @@
         </div>
         <br>
         <!--<a class="btn btn-primary float-right" href="{{ url('platillos/store') }}">Agregar nuevo ingrediente</a>-->
+
         <h2 class="h2 d-inline">Ingredientes</h2>
         <table class="table table-responsive table-dark text-center">
             <thead>
                 <tr>
-                    <th scope="col" style="width: 25%">Nombre</th>
-                    <th scope="col" style="width: 25%">Cantidad en existencia</th>
-                    <th scope="col" style="width: 25%">Precio de proveedor</th>
-                    <th scope="col" style="width: 25%">Opciones</th>
+                    <th scope="col" style="width: 60%">Nombre</th>
+                    <th scope="col" style="width: 10%">Cantidad en existencia</th>
+                    <th scope="col" style="width: 10%">Precio de proveedor</th>
+                    <th scope="col" style="width: 20%">Opciones</th>
                 </tr>
             </thead>
             <tbody>

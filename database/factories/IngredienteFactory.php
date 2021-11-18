@@ -18,6 +18,7 @@ class IngredienteFactory extends Factory
             'nombre' => $this->faker->vegetableName(),
             'cantidad' => $this->faker->numberBetween(0, 100),
             'costo' => $this->faker->numberBetween(0,1000),
+            'unidad_medida' => $this->faker->word(),
             'id_proveedor' => 0
         ];
     }
