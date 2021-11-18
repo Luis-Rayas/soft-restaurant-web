@@ -45,8 +45,8 @@ Route::get('/ingredientes/view/{id}', [IngredienteController::class, 'view'])->n
 Route::get('/ingredientes/create', [IngredienteController::class, 'create'])->name('ingredienteCreate');
 Route::post('/ingredientes/store', [IngredienteController::class, 'store'])->name('ingredienteStore');
 Route::get('/ingredientes/edit/{id}', [IngredienteController::class, 'edit'])->name('ingredienteEdit');
-Route::post('/ingredientes/update/{id}', [IngredienteController::class, 'update'])->name('ingredienteUpdate');
-Route::delete('/ingredientes/delete/{id}', [IngredienteController::class, 'delete'])->name('ingredienteDelete');
+Route::post('/ingredientes/update', [IngredienteController::class, 'update'])->name('ingredienteUpdate');
+Route::delete('/ingredientes/delete', [IngredienteController::class, 'delete'])->name('ingredienteDelete');
 
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedorIndex');
 Route::get('/proveedores/view/{id}', [ProveedorController::class, 'view'])->name('proveedorView');

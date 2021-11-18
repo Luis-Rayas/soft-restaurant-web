@@ -14,6 +14,12 @@ class IngredienteController extends Controller
         return view('ingredientes.indexView')->with(['ingredientes' => $ingredientes]);
     }
 
+    public function view(int $id)
+    {
+        $ingrediente = Ingrediente::find($id);
+        return $ingrediente->toJson();
+    }
+
     public function create()
     {
         return view('ingredientes.editView');
