@@ -22,19 +22,25 @@
                         <div class="">
                             @csrf
                             <div class="form-group">
+                                <label for="nombre_ingr" class="form-label">Nombre</label>
+                                <input class="form-control" type="text" id="nombre_ingr" name="nombre" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="cant_ingred" class="form-label">Cantidad disponibles en almacen</label>
-                                <input class="form-control" type="number" id="cant_ingred" name="cantidad">
+                                <input class="form-control" type="number" id="cant_ingred" name="cantidad" required min="1">
                             </div>
                             <div class="form-group">
                                 <label for="costo" class="form-label">Costo</label>
-                                <input class="form-control" type="number" id="cant_ingred" name="costo">
+                                <input class="form-control" type="number" id="cost_ingred" name="costo" required min="1">
                             </div>
                             <div class="form-group">
                                 <label for="cant_ingred" class="form-label">Proveedor que lo suministra</label>
                                 <select name="idProveedor" id="select-proveedor">
-                                    <option value="null">Sin Proveedor</option>
+                                    <option value="null" id="opc-sinProveedor">Sin Proveedor</option>
                                     <!--Rellenar proveedores -->
-                                    <option value="">PEdro</option>
+                                    @foreach ($proveedores as $proveedor)
+                                        <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <input class="btn btn-primary" type="submit" value="Añadir">
@@ -64,60 +70,56 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" placeholder="No. de Mesa"
-                            aria-label="Recipient's username" aria-describedby="basic-addon2" id="tf-search-mesa"
+                        <input type="number" class="form-control" placeholder="No. de Ingrediente"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2" id="tf-search-ingr"
                             onclick="resetForm()">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="button" id="btn-search-mesa"
-                                onclick="findMesaById()">Buscar</button>
+                            <button class="btn btn-outline-primary" type="button" id="btn-search-ingr"
+                                onclick="findIngredienteById()">Buscar</button>
                         </div>
                     </div>
-                    <div class="container" id="informacion-ingred">
-                        <p id="id-mesa">Ingrediente No. #</p>
-                        <div class="info-mesa" id="div-info-mesa">
-                            <form action="{{ route('ingredienteUpdate') }}" method="POST" id="form-mesa"
+                    <div class="container" id="informacion-ingred" hidden>
+                        <p id="id-ingrediente">Ingrediente No. #</p>
+                        <div class="info-mesa" id="div-info-ingr">
+                            <form action="{{ route('ingredienteUpdate') }}" method="POST" id="form-ingr"
                                 onkeypress="return disableEnterKey(event)">
                                 @csrf
+                                <input type="hidden" name="id" id="hd-id-ingr">
+                                <div class="form-group">
+                                    <label for="nombre_ingr" class="form-label">Nombre</label>
+                                    <input class="form-control" type="text" id="tf_nombre_ingr" name="nombre" readonly required>
+                                </div>
                                 <div class="form-group">
                                     <label for="cant_ingred" class="form-label">Cantidad disponibles en
                                         almacen</label>
-                                    <input class="form-control" type="number" id="cant_ingred" name="cantidad">
+                                    <input class="form-control" type="number" id="cant_ingr" name="cantidad" min="0" readonly required>
                                 </div>
                                 <div class="form-group">
                                     <label for="costo" class="form-label">Costo</label>
-                                    <input class="form-control" type="number" id="cant_ingred" name="costo">
+                                    <input class="form-control" type="number" id="costo_ingr" name="costo" min="0" readonly required>
                                 </div>
                                 <div class="form-group">
                                     <label for="cant_ingred" class="form-label">Proveedor que lo suministra</label>
-                                    <select name="idProveedor" id="select-proveedor" class="form-select">
-                                        <option value="null">Sin Proveedor</option>
+                                    <select name="idProveedor" id="select_proveedor" class="form-select" disabled>
+                                        <option value="null" id="proveedor_id_0">Sin Proveedor</option>
                                         <!--Rellenar proveedores -->
-                                        <option value="">PEdro</option>
+                                        @foreach ($proveedores as $proveedor)
+                                        <option value="{{$proveedor->id}}" id="proveedor_id_{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </form>
-                            <form action="{{ route('ingredienteDelete') }}" method="POST" id="form-mesa-delete" hidden>
-                                @csrf
-                                <input type="hidden" name="id" id="hd-id-ingrd-delete">
-                            </form>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="opc-mesa" class="form-check-input" id="rad-edit-info"
-                                onchange="editInformacion(this)">
+                            <input type="checkbox" name="opc-mesa" class="form-check-input" id="edit_info"
+                                onchange="editInformacion()">
                             <label class="form-check-label" for="ck-edit-info">Editar</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="opc-mesa" class="form-check-input" id="rad-delete-info"
-                                onchange="editInformacion(this)">
-                            <label class="form-check-label" for="ck-edit-info">Eliminar</label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btn-guardar-mesa" class="btn btn-primary" data-dismiss="modal" hidden
-                        onclick="sendFormMesa()">Guardar</button>
-                    <button type="button" id="btn-eliminar-mesa" class="btn btn-danger" data-dismiss="modal" hidden
-                        onclick="deleteMesa()">Eliminar</button>
+                    <button type="button" id="btn-guardar-ingred" class="btn btn-primary" data-dismiss="modal" hidden
+                        onclick="sendFormIngr()">Guardar</button>
                     <span></span>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
                         onclick="resetForm()">Cancelar</button>
@@ -138,34 +140,39 @@
             </button>
         </div>
         <br>
-        <!--<a class="btn btn-primary float-right" href="{{ url('platillos/store') }}">Agregar nuevo ingrediente</a>-->
+        <!--<a class="btn btn-primary float-right" href="">Agregar nuevo ingrediente</a>-->
+        @error('nombre')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('cantidad')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        @error('costo')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
         <h2 class="h2 d-inline">Ingredientes</h2>
         <table class="table table-responsive table-dark text-center">
             <thead>
                 <tr>
-                    <th scope="col" style="width: 60%">Nombre</th>
-                    <th scope="col" style="width: 10%">Cantidad en existencia</th>
-                    <th scope="col" style="width: 10%">Precio de proveedor</th>
+                    <th scope="col" style="width: 10%">ID</th>
+                    <th scope="col" style="width: 30%">Nombre</th>
+                    <th scope="col" style="width: 20%">Cantidad en existencia</th>
+                    <th scope="col" style="width: 20%">Precio de proveedor</th>
                     <th scope="col" style="width: 20%">Opciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($ingredientes as $ingrediente)
                     <tr>
+                        <td>{{ $ingrediente->id }}</td>
                         <td>{{ $ingrediente->nombre }}</td>
                         <td>{{ $ingrediente->cantidad }}</td>
-                        <td>${{ $ingrediente->precio }}</td>
-                        <td class="d-flex justify-content-center">
-                            <a class='btn btn-lg btn-primary mx-1'
-                                href="{{ url('ingredientes/edit/' . $ingrediente->id) }}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a class='btn btn-lg btn-primary mx-1' href="">
+                        <td>${{ $ingrediente->costo }}</td>
+                        <td>
+                            <a class='btn btn-lg btn-primary mx-1' href="{{route('ingredienteDelete', $ingrediente->id)}}">
                                 <i class="fas fa-trash-alt"></i>
-                            </a>
-                            <a class='btn btn-lg btn-primary mx-1' href="">
-                                <i class="fas fa-envelope"></i>
                             </a>
                         </td>
                     </tr>
@@ -176,5 +183,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="{{ asset('js/mesas.js') }}"></script>
+    <script src="{{ asset('js/ingredientes.js') }}"></script>
 </x-principal-layout>

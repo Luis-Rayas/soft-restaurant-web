@@ -1,61 +1,67 @@
+//const { data } = require("jquery");
+
 function findIngredienteById() {
-    var tfCantPersonas = document.getElementById("tf-cant-personas");
-    fetch("/ingredientes/view/" + document.getElementById("tf-search-mesa").value)
+    console.log(document.getElementById("tf-search-ingr").value);
+    fetch("/ingredientes/view/" + document.getElementById("tf-search-ingr").value)
         .then((resp) => resp.json())
         .then(function (data) {
             console.log(data);
-            document.getElementById("hd-id-mesa").value = data.id;
-            document.getElementById("hd-id-mesa-delete").value = data.id;
-            document.getElementById("id-mesa").innerHTML =
-                "Mesa No. " + data.id;
-            document.getElementById("tf-cant-personas").value =
-                data.cant_personas;
-            document.getElementById("informacion-mesa").hidden = false;
+            if(Object.keys(data).length !== 0)
+            {
+                document.getElementById("hd-id-ingr").value = data.id;
+                document.getElementById("id-ingrediente").innerHTML =
+                    "Ingrediente No. " + data.id;
+                document.getElementById("tf_nombre_ingr").value =
+                    data.nombre;
+                document.getElementById("cant_ingr").value =
+                    data.cantidad;
+                document.getElementById("costo_ingr").value =
+                    data.costo;
+                document.getElementById("proveedor_id_"+data.id_proveedor).selected = true;
+                document.getElementById("informacion-ingred").hidden = false;
+            } else {
+                alert("No se encontro informacion")
+                resetForm();
+            }
         })
         .catch(function (error) {
             console.error(error);
-            alert("Ah ocurrido un error al buscar la mesa");
+            alert("Ah ocurrido un error al buscar el ingrediente");
             resetForm();
         });
 }
 
-function sendFormMesa() {
-    var formulario = document.getElementById("form-mesa");
+function sendFormIngr() {
+    var formulario = document.getElementById("form-ingr");
     formulario.submit();
 }
 
-function deleteMesa() {
-    var formulario = document.getElementById("form-mesa-delete");
-    formulario.submit();
-}
-
-function editInformacion(e) {
-    var idElement = e.id;
-    var btnSave = document.getElementById("btn-guardar-mesa");
-    var btnDelete = document.getElementById("btn-eliminar-mesa");
-
-    var tfCantPersonas = document.getElementById("tf-cant-personas");
-    if (idElement == "rad-edit-info" && e.checked) {
-        btnSave.hidden = false;
-        btnDelete.hidden = true;
-        tfCantPersonas.readOnly = false;
+function editInformacion() {
+    var e = document.getElementById("edit_info");
+    if(e.checked){
+        document.getElementById("tf_nombre_ingr").readOnly = false;
+        document.getElementById("cant_ingr").readOnly = false;
+        document.getElementById("costo_ingr").readOnly = false;
+        document.getElementById("select_proveedor").disabled = false;
+        document.getElementById("btn-guardar-ingred").hidden = false;
     } else {
-        tfCantPersonas.readOnly = true;
-        btnSave.hidden = true;
-        btnDelete.hidden = false;
+        document.getElementById("tf_nombre_ingr").readOnly = true;
+        document.getElementById("cant_ingr").readOnly = true;
+        document.getElementById("costo_ingr").readOnly = true;
+        document.getElementById("select_proveedor").disabled = true;
     }
 }
 
 function resetForm() {
-    document.getElementById("tf-search-mesa").value = "";
-    document.getElementById("hd-id-mesa").value = "";
-    document.getElementById("id-mesa").innerHTML = "Mesa No. #";
-    document.getElementById("tf-cant-personas").value = "";
-    document.getElementById("rad-edit-info").checked = false;
-    document.getElementById("rad-delete-info").checked = false;
-    document.getElementById("informacion-mesa").hidden = true;
-    document.getElementById("btn-guardar-mesa").hidden = true;
-    document.getElementById("btn-eliminar-mesa").hidden = true;
+    document.getElementById("tf_nombre_ingr").readOnly = true;
+    document.getElementById("tf_nombre_ingr").value = "";
+    document.getElementById("cant_ingr").readOnly = true;
+    document.getElementById("cant_ingr").value = "";
+    document.getElementById("costo_ingr").readOnly = true;
+    document.getElementById("costo_ingr").value = "";
+    document.getElementById("select_proveedor").disabled = true;
+    document.getElementById("btn-guardar-ingred").hidden = true;
+    document.getElementById("informacion-ingred").hidden = true;
 }
 
 function disableEnterKey(e) {

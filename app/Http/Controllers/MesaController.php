@@ -17,7 +17,11 @@ class MesaController extends Controller
     public function findById(int $id)
     {
         $mesa = Mesa::find($id);
-        return $mesa->toJson();
+        if($mesa != null)
+            return $mesa->toJson();
+        else{
+            return json_encode((object) null);
+        }
     }
 
     public function create()

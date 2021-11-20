@@ -4,13 +4,19 @@ function findMesaById() {
         .then((resp) => resp.json())
         .then(function (data) {
             console.log(data);
-            document.getElementById("hd-id-mesa").value = data.id;
-            document.getElementById("hd-id-mesa-delete").value = data.id;
-            document.getElementById("id-mesa").innerHTML =
-                "Mesa No. " + data.id;
-            document.getElementById("tf-cant-personas").value =
-                data.cant_personas;
-            document.getElementById("informacion-mesa").hidden = false;
+            if(Object.keys(data).length !== 0)
+            {
+                document.getElementById("hd-id-mesa").value = data.id;
+                document.getElementById("hd-id-mesa-delete").value = data.id;
+                document.getElementById("id-mesa").innerHTML =
+                    "Mesa No. " + data.id;
+                document.getElementById("tf-cant-personas").value =
+                    data.cant_personas;
+                document.getElementById("informacion-mesa").hidden = false;
+            }
+            else {
+                alert("No se encontro información");
+            }
         })
         .catch(function (error) {
             console.error(error);
