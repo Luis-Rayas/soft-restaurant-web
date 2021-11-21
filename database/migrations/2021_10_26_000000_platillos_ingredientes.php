@@ -20,7 +20,7 @@ class PlatillosIngredientes extends Migration
             $table->foreign('platillo_id')->references('id')->on('platillos');
             $table->unsignedBigInteger('ingrediente_id');
             $table->foreign('ingrediente_id')->references('id')->on('ingredientes');
-            $table->double('cantidad')->nullable();
+            $table->double('cant_usa')->nullable();
             $table->softDeletes();
         });
     }

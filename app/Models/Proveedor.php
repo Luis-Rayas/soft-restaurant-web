@@ -11,9 +11,4 @@ class Proveedor extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = 'proveedores';
-
-    public function platillo()
-    {
-        return $this->belongsTo(Platillo::class);
-    }
 }

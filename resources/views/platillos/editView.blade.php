@@ -1,6 +1,5 @@
 <x-principal-layout>
     <x-nav-bar />
-
     <div class="container">
         <div class="d-flex justify-content-center">
             @if (isset($platillo) && $platillo->img_path == asset('img/menu/' . $platillo->id . $platillo->nombre . '.jpg'))
@@ -26,7 +25,7 @@
                     @foreach ($tipoAlimento as $tipo)
                         <option value="{{$tipo->id}}"
                             @if (isset($platillo) && $platillo->tipo_alimento_id == $tipo->id)
-                                seleted
+                                selected
                             @endif>{{$tipo->nombre}}</option>
                     @endforeach
                 </select>
@@ -47,7 +46,7 @@
                 <label for="platillo_precio">Precio del platillo</label>
                 <input type="number" name="platillo_precio" class="form-control" id="platillo_precio" placeholder="0.0"
                     @if (isset($platillo) && isset($platillo->id))
-                value="{{ $platillo->precio }}"
+                        value="{{ $platillo->precio }}"
                 @endif requiered min="1">
             </div>
             <label for="">Ingredientes del platillo</label>
@@ -60,7 +59,15 @@
                                 <span class="input-group-text">Cantidad</span>
                             </div>
                             <input type="hidden" name="id_ingrediente[]" value="{{$ingrediente->id}}">
-                            <input name="cant_ingredientes[]" type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0">
+                            <input name="cant_ingredientes[]" type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0"
+                            @if (isset($platillo) && isset($platillo->id))
+                            @foreach ($platillo->ingredientes as $ingPlatillo)
+                                @if (isset($platillo) && $ingrediente->id == $ingPlatillo->pivot->ingrediente_id)
+                                    value="{{$ingPlatillo->pivot->cant_usa}}"
+                                @endif
+                            @endforeach
+                            @endif>
+
                         </div>
                     </div>
                 @endforeach

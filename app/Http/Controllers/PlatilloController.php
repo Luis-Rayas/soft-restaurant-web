@@ -33,10 +33,9 @@ class PlatilloController extends Controller
             'platillo_name' => 'required',
             'platillo_precio' => 'required|min:0'
         ]);
-        dump($request);
         $platillo = new Platillo();
-        if($request->id){
-            $platillo->id = $request->id;
+        if(isset($request->id)){
+            $platillo = Platillo::find($request->id);
         }
         //$platillo-> = $request->id; //imagen path
         $platillo->tipo_alimento_id = $request->tipo_alimento;
@@ -46,16 +45,22 @@ class PlatilloController extends Controller
         $platillo->save();
         //Ingredientes
         for ($i=0; $i < count($request->id_ingrediente); $i++) {
-            if($request->cant_ingredientes[$i] != 0 && $request->cant_ingredientes[$i] != null){
+            if(/*$request->cant_ingredientes[$i] != 0 &&*/ $request->cant_ingredientes[$i] != null){
                     //guardar id de ingrediente y platillo en tbla
                     $platillo_ingrediente = new Platillo_ingrediente();
                     $platillo_ingrediente->platillo_id = $platillo->id;
                     $platillo_ingrediente->ingrediente_id = $request->id_ingrediente[$i];
-                    $platillo_ingrediente->cantidad = $request->cant_ingredientes[$i];
+                    $platillo_ingrediente->cant_usa = $request->cant_ingredientes[$i];
                     $platillo_ingrediente->save();
             }
         }
         return redirect()->route('platilloIndex');
+    }
+
+    public function view(int $id)
+    {
+        $platillo = Platillo::find($id);
+        return $platillo;
     }
 
 

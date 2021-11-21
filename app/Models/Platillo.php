@@ -16,6 +16,7 @@ class Platillo extends Model
 
     public function ingredientes()
     {
-        return $this->belongsToMany(Ingrediente::class, 'platillos_ingredientes');
+        return $this->belongsToMany(Ingrediente::class, 'platillos_ingredientes')
+        ->withPivot('cant_usa');
     }
 }

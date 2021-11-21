@@ -18,4 +18,9 @@ class Ingrediente extends Model
     {
         return $this->hasOne(Proveedor::class);
     }
+
+    public function platillo()
+    {
+        return $this->belongsTo(Platillo::class);
+    }
 }

@@ -28,7 +28,7 @@
         </div>
 
         <!-- Scripts -->
-        <script src=" {{ asset('js/jquery-3.6.0.js') }}"></script>
+        
         <script src=" {{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
