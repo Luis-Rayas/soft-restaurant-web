@@ -38,7 +38,7 @@ Route::get('/platillos/create', [PlatilloController::class, 'create'])->name('pl
 Route::post('/platillos/store', [PlatilloController::class, 'store'])->name('platilloStore');
 Route::get('/platillos/edit/{id}', [PlatilloController::class, 'edit'])->name('platilloEdit');
 Route::post('/platillos/update/{id}', [PlatilloController::class, 'update'])->name('platilloUpdate');
-Route::delete('/platillos/delete/{id}', [PlatilloController::class, 'delete'])->name('platilloDelete');
+Route::get('/platillos/delete/{id}', [PlatilloController::class, 'delete'])->name('platilloDelete');
 
 Route::get('/ingredientes', [IngredienteController::class, 'index'])->name('ingredienteIndex');
 Route::get('/ingredientes/view/{id}', [IngredienteController::class, 'view'])->name('ingredienteView');

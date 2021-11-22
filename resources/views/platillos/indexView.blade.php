@@ -29,7 +29,7 @@
                             <a class='btn btn-lg btn-primary mx-1' href="{{ route('platilloEdit', $alimento->id)}}">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class='btn btn-lg btn-primary mx-1' href="">
+                            <a class='btn btn-lg btn-primary mx-1' href="{{ route('platilloDelete', $alimento->id)}}">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                         </td>
@@ -60,7 +60,7 @@
                             <a class='btn btn-lg btn-primary mx-1' href="{{ route('platilloEdit', $bebida->id)}}">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class='btn btn-lg btn-primary mx-1' href="">
+                            <a class='btn btn-lg btn-primary mx-1' href="{{ route('platilloDelete', $bebida->id)}}">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                         </td>

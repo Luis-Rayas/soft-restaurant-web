@@ -42,18 +42,22 @@ class PlatilloController extends Controller
         $platillo->nombre = $request->platillo_name;
         $platillo->descripcion = $request->descripcion;
         $platillo->precio = $request->platillo_precio;
+        if($platillo->ingredientes->count() >= 1){
+            $platillo->ingredientes()->detach();
+        }
         $platillo->save();
         //Ingredientes
-        for ($i=0; $i < count($request->id_ingrediente); $i++) {
-            if(/*$request->cant_ingredientes[$i] != 0 &&*/ $request->cant_ingredientes[$i] != null){
-                    //guardar id de ingrediente y platillo en tbla
-                    $platillo_ingrediente = new Platillo_ingrediente();
-                    $platillo_ingrediente->platillo_id = $platillo->id;
-                    $platillo_ingrediente->ingrediente_id = $request->id_ingrediente[$i];
-                    $platillo_ingrediente->cant_usa = $request->cant_ingredientes[$i];
-                    $platillo_ingrediente->save();
+        if(isset($request->ingrediente_id)){
+            for ($i=0; $i < count($request->ingrediente_id); $i++) {
+                //guardar id de ingrediente y platillo en tbla
+                $platillo_ingrediente = new Platillo_ingrediente();
+                $platillo_ingrediente->platillo_id = $platillo->id;
+                $platillo_ingrediente->ingrediente_id = $request->ingrediente_id[$i];
+                $platillo_ingrediente->cant_usa = $request->ingrediente_cant_usa[$i];
+                $platillo_ingrediente->save();
             }
         }
+
         return redirect()->route('platilloIndex');
     }
 
@@ -76,6 +80,12 @@ class PlatilloController extends Controller
 
     public function delete(int $id)
     {
-
+        $platillo = new Platillo();
+        $platillo = Platillo::find($id);
+        if($platillo->ingredientes->count() >= 1){
+            $platillo->ingredientes()->detach();
+        }
+        $platillo->delete();
+        return redirect()->route('platilloIndex');
     }
 }

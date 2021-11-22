@@ -1,5 +1,7 @@
 <x-principal-layout>
     <x-nav-bar />
+    <link src="{{asset('css/dataTables.bootstrap5.min.css')}}"/>
+
     <div class="container">
         <div class="d-flex justify-content-center">
             @if (isset($platillo) && $platillo->img_path == asset('img/menu/' . $platillo->id . $platillo->nombre . '.jpg'))
@@ -9,7 +11,7 @@
                 <img src="{{ asset('img/menu/img-not-found.jpg') }}" alt="Imagen de platillo">
             @endif
         </div>
-        <form action="{{ route('platilloStore')}}" method="POST">
+        <form action="{{ route('platilloStore')}}" method="POST" id="form_platillo">
             @csrf
             <input type="hidden" name="id" @if (isset($platillo) && isset($platillo->id))
             value="{{ $platillo->id }}"
@@ -50,29 +52,56 @@
                 @endif requiered min="1">
             </div>
             <label for="">Ingredientes del platillo</label>
-            <div class="row">
-                @foreach ($ingredientes as $ingrediente)
-                    <div class="col-sm-4">
-                        <span class="input-group-text d-flex justify-content-center">{{$ingrediente->nombre}}</span>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Cantidad</span>
-                            </div>
-                            <input type="hidden" name="id_ingrediente[]" value="{{$ingrediente->id}}">
-                            <input name="cant_ingredientes[]" type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0"
-                            @if (isset($platillo) && isset($platillo->id))
-                            @foreach ($platillo->ingredientes as $ingPlatillo)
-                                @if (isset($platillo) && $ingrediente->id == $ingPlatillo->pivot->ingrediente_id)
-                                    value="{{$ingPlatillo->pivot->cant_usa}}"
-                                @endif
-                            @endforeach
-                            @endif>
-
-                        </div>
+            <div class="form-group">
+                <select class="form-select" id="select_ingrediente_add">
+                    @foreach ($ingredientes as $ingrediente)
+                    <option value="{{$ingrediente->id}}" class="dropdown-item">{{$ingrediente->nombre}}</option>
+                    @endforeach
+                </select>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Cantidad que usa</label>
                     </div>
-                @endforeach
+                    <input type="number" class="form-control" id="ingrediente_cant_add">
+                    <button class="btn btn-outline-primary" id="btn_ingrediente_add">Agregar</button>
+                </div>
             </div>
-            <input class="btn btn-primary" type="submit" value="Guardar">
+            <table class="table table-responsive table-dark table-striped text-center display" id="ingr_table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 10%">ID</th>
+                        <th scope="col" style="width: 45%">Ingrediente</th>
+                        <th scope="col" style="width: 45%">Cantidad que usa</th>
+                        <th scope="col" style="width: 45%">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (isset($platillo) && isset($platillo->id) && count($platillo->ingredientes) != 0)
+                    @foreach ($platillo->ingredientes as $ingrediente)
+                        <tr class="even">
+                            <td class="sorting_1">{{ $ingrediente->pivot->ingrediente_id }}</td>
+                            <td>{{ $ingrediente->nombre }}</td>
+                            <td>
+                                {{ $ingrediente->pivot->cant_usa }}
+                            </td>
+                            <td>
+                                <span class='btn btn-lg btn-primary mx-1' id="btnBorrar">
+                                    <i class="fas fa-trash-alt" id="btnBorrar"></i>
+                                </span>
+                            </td>
+                            <input type="hidden" id="ingrediente_id" name="ingrediente_id[]" value="{{$ingrediente->id}}">
+                            <input type="hidden" id="ingrediente_cant_usa" name="ingrediente_cant_usa[]" value="{{$ingrediente->pivot->cant_usa}}">
+                        </tr>
+                    @endforeach
+                    @endif
+                </tbody>
+            </table>
+            <input class="btn btn-primary" type="submit" value="Guardar" id="btnSubmit"/>
         </form>
     </div>
+
+    <script src=" {{ asset('js/jquery-3.6.0.js') }}"></script>
+    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('js/platillos.js')}}"></script>
 </x-principal-layout>
