@@ -19,7 +19,7 @@
             >
             <div class="form-group">
                 <label for="formFile" class="form-label">Imagen del platillo</label>
-                <input class="form-control" type="file" id="formFile" name="platilloImg">
+                <input class="form-control" type="file" id="formFile" name="platilloImg" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="formFile" class="form-label">Tipo de Platillo</label>

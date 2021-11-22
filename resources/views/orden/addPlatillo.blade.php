@@ -7,8 +7,11 @@
                         <x-platillo-card id="{{ $platillo->id }}" />
                         <div class="form-group">
                             <form action="">
-                                <input class="input-text" type="number" name="" id="" value="" placeholder="Cantidad">
-                                <a class="btn btn-primary" href="">Agregar</a>
+                                <div class="form-control">
+                                    <input class="input-text" type="number" name="" id="" value="" placeholder="Cantidad">
+                                    <textarea class="input-textarea" name="comentarios" id="" placeholder="Comentarios"></textarea>
+                                    <a class="btn btn-primary" href="">Agregar</a>
+                                </div>
                             </form>
                         </div>
                     </div>

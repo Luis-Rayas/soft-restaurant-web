@@ -12,14 +12,14 @@
                 <div class="alert alert-success" role="alert">
                     Mesa Disponible
                 </div>
-                <a href="#" class="btn btn-primary">
+                <a href="{{route('ordenStore',$id)}}" class="btn btn-primary">
                     Abrir orden
                 </a>
             @else
                 <div class="alert alert-danger" role="alert">
                     Mesa Ocupada
                 </div>
-                <a href="'/mesas/{{$id}}/orden" class="btn btn-secondary">
+                <a href="{{route('viewOrdenAbierta',$id)}}" class="btn btn-secondary">
                     Ver orden abierta
                 </a>
             @endif

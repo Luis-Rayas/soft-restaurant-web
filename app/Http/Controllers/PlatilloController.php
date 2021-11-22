@@ -7,6 +7,7 @@ use App\Models\Platillo;
 use App\Models\Platillo_ingrediente;
 use Illuminate\Http\Request;
 use App\Models\TipoAlimento;
+use Illuminate\Support\Facades\Storage;
 
 class PlatilloController extends Controller
 {
@@ -31,13 +32,20 @@ class PlatilloController extends Controller
     {
         $request->validate([
             'platillo_name' => 'required',
-            'platillo_precio' => 'required|min:0'
+            'platillo_precio' => 'required|min:0',
+            'platilloImg' => 'image|mimes:jpeg,png,jpg'
         ]);
         $platillo = new Platillo();
         if(isset($request->id)){
             $platillo = Platillo::find($request->id);
         }
-        //$platillo-> = $request->id; //imagen path
+        if($request->hasFile('file'))
+        {
+            /*if($platillo->image != null){
+                Storage::disk('localMenu')->($user->image->path);
+                $platillo->image->delete();
+            }*/
+        }
         $platillo->tipo_alimento_id = $request->tipo_alimento;
         $platillo->nombre = $request->platillo_name;
         $platillo->descripcion = $request->descripcion;
@@ -46,6 +54,7 @@ class PlatilloController extends Controller
             $platillo->ingredientes()->detach();
         }
         $platillo->save();
+        dd($platillo);
         //Ingredientes
         if(isset($request->ingrediente_id)){
             for ($i=0; $i < count($request->ingrediente_id); $i++) {

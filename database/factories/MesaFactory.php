@@ -14,7 +14,7 @@ class MesaFactory extends Factory
     public function definition()
     {
         return [
-            'disponible' => boolval($this->faker->numberBetween(0,1)),
+            'disponible' => boolval($this->faker->numberBetween(1,1)),
             'cant_personas' => $this->faker->numberBetween(1, 20)
         ];
     }

@@ -10,4 +10,6 @@ class Orden extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'ordenes';
 }
