@@ -39,13 +39,6 @@ class PlatilloController extends Controller
         if(isset($request->id)){
             $platillo = Platillo::find($request->id);
         }
-        if($request->hasFile('file'))
-        {
-            /*if($platillo->image != null){
-                Storage::disk('localMenu')->($user->image->path);
-                $platillo->image->delete();
-            }*/
-        }
         $platillo->tipo_alimento_id = $request->tipo_alimento;
         $platillo->nombre = $request->platillo_name;
         $platillo->descripcion = $request->descripcion;

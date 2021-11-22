@@ -6,7 +6,6 @@ use App\Http\Controllers\MesaController;
 use App\Http\Controllers\OrdenController;
 use App\Http\Controllers\PlatilloController;
 use App\Http\Controllers\ProveedorController;
-use App\Models\Proveedor;
 use Illuminate\Support\Facades\Route;
 
 /*

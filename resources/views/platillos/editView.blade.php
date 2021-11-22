@@ -4,12 +4,6 @@
 
     <div class="container">
         <div class="d-flex justify-content-center">
-            @if (isset($platillo) && $platillo->img_path == asset('img/menu/' . $platillo->id . $platillo->nombre . '.jpg'))
-                <img src="{{ asset('img/menu/' . $platillo->id . $platillo->nombre . '.jpg') }}"
-                    alt="Imagen de platillo">
-            @else
-                <img src="{{ asset('img/menu/img-not-found.jpg') }}" alt="Imagen de platillo">
-            @endif
         </div>
         <form action="{{ route('platilloStore')}}" method="POST" id="form_platillo">
             @csrf
@@ -17,10 +11,6 @@
             value="{{ $platillo->id }}"
             @endif
             >
-            <div class="form-group">
-                <label for="formFile" class="form-label">Imagen del platillo</label>
-                <input class="form-control" type="file" id="formFile" name="platilloImg" accept="image/*">
-            </div>
             <div class="form-group">
                 <label for="formFile" class="form-label">Tipo de Platillo</label>
                 <select name="tipo_alimento" id="" class="form-control">
