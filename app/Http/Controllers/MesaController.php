@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mesa;
+use App\Models\Orden;
 use App\Models\Platillo;
 use Illuminate\Http\Request;
 
@@ -60,8 +61,19 @@ class MesaController extends Controller
 
     public function viewOrdenByMesa(int $mesa_id)
     {
+
         $platillos = Platillo::all();
-        return view('orden.orderView')->with(['platillos' => $platillos]);
+        $mesa = Mesa::find($mesa_id);
+        $orden = Orden::where('mesa_id', $mesa_id)->where('cerrada', false)->get();
+        return view('orden.orderView')->with(['platillos' => $platillos, 'mesa' => $mesa, 'orden' => $orden]);
+    }
+
+
+
+    public function addPlatillo(int $id_mesa, int $id_orden)
+    {
+        $platillos = Platillo::all();
+        return view('orden.addPlatillo')->with(['platillos' => $platillos, 'id_mesa' => $id_mesa, 'id_orden' => $id_orden]);
     }
 
     public function delete(Request $request)

@@ -47,7 +47,6 @@ class PlatilloController extends Controller
             $platillo->ingredientes()->detach();
         }
         $platillo->save();
-        dd($platillo);
         //Ingredientes
         if(isset($request->ingrediente_id)){
             for ($i=0; $i < count($request->ingrediente_id); $i++) {
@@ -59,7 +58,6 @@ class PlatilloController extends Controller
                 $platillo_ingrediente->save();
             }
         }
-
         return redirect()->route('platilloIndex');
     }
 

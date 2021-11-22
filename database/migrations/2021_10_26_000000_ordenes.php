@@ -16,6 +16,7 @@ class Ordenes extends Migration
         Schema::dropIfExists('ordenes');
         Schema::create('ordenes', function (Blueprint $table) {
             $table->id();
+            $table->boolean('cerrada')->default(false);
             $table->unsignedBigInteger('mesa_id');
             $table->foreign('mesa_id')->references('id')->on('mesas');
             $table->unsignedBigInteger('user_id');

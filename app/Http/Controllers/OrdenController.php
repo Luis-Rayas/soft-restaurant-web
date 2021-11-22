@@ -35,14 +35,6 @@ class OrdenController extends Controller
         $mesa = Mesa::find($id_mesa);
         $mesa->disponible = false;
         $mesa->save();
-        return redirect()->route('viewOrdenAbierta',$id_mesa)->with(['orden'=>$orden]);
+        return redirect()->route('viewOrdenAbierta',$id_mesa);
     }
-
-    public function test()
-    {
-        $platillos = Platillo::all();
-        return view('orden.addPlatillo')->with(['platillos' => $platillos]);
-    }
-
-
 }

@@ -1,4 +1,5 @@
 <x-principal-layout>
+    
     <div class="container" style="background: #ffffff;border-radius: 8px;">
         <div class="container">
             <div class="row">

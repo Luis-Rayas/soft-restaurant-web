@@ -29,6 +29,7 @@ Route::post('mesas/store', [MesaController::class, 'store'])->name('mesaStore');
 Route::get('/mesas/edit/{id}', [MesaController::class, 'edit'])->name('mesaEdit');
 Route::post('mesas/update',[MesaController::class, 'update'])->name('mesaUpdate');
 Route::get('/mesas/{id_mesa}/orden', [MesaController::class, 'viewOrdenByMesa'])->name('viewOrdenAbierta');
+Route::get('/mesas/{id_mesa}/orden/{id_orden}/addPlatillos', [MesaController::class, 'addPlatillo'])->name('addPlatillo');
 Route::post('/mesas/delete', [MesaController::class, 'delete'])->name('mesaDelete');
 
 Route::get('/platillos', [PlatilloController::class, 'index'])->name('platilloIndex');
