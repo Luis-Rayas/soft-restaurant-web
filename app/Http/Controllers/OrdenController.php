@@ -37,4 +37,15 @@ class OrdenController extends Controller
         $mesa->save();
         return redirect()->route('viewOrdenAbierta',$id_mesa);
     }
+
+    public function cerrarOrden($id_mesa,$id_orden)
+    {
+        $orden = Orden::where('mesa_id', $id_mesa)->where('cerrada', false)->where('id', $id_orden)->get();
+        $orden[0]->cerrada = true;
+        $orden[0]->save();
+        $mesa = Mesa::find($id_mesa);
+        $mesa->disponible = true;
+        $mesa->save();
+        return redirect()->route('mesaIndex');
+    }
 }

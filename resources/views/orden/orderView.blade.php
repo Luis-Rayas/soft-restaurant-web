@@ -1,66 +1,72 @@
 <x-principal-layout>
-    <x-nav-bar/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{asset('css/orderView.css')}}" rel="stylesheet" />
-
-    <div class="d-flex" id="wrapper">
-        <!-- Sidebar-->
-        <div class="border-end bg-white" id="sidebar-wrapper" style="overflow-y: scroll;">
-            <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
-            <div class="list-group list-group-flush">
-                @foreach ($platillos as $platillo)
-                    <div class="list-group-item list-group-item-action list-group-item-light p-6">
-                        <x-platillo-card id="{{ $platillo->id }}" />
-                        <div class="form-group">
-                            <form action="">
-                                <div class="form-control">
-                                    <input class="input-text" type="number" name="" id="" value="" placeholder="Cantidad">
-                                    <textarea class="input-textarea" name="comentarios" id="" placeholder="Comentarios"></textarea>
-                                    <a class="btn btn-primary" href="">Agregar</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                @endforeach
+    <x-nav-bar />
+    <link rel="stylesheet" href="{{ asset('css/orderView.css') }}">
+    <link src="{{asset('css/dataTables.bootstrap5.min.css')}}"/>
+    <!-- Page content-->
+    <div class="container-fluid">
+        <div class="card text-center">
+            <div class="card-header">
+                Fecha: <br>
+                {{ date('d/m/Y H:H:s') }}
             </div>
-        </div>
-        <!-- Page content wrapper-->
-        <div id="page-content-wrapper">
-            <!-- Page content-->
-            <div class="container-fluid">
-                <div class="card text-center">
-                    <div class="card-header">
-                        Fecha: <br>
-                        {{ date('d/m/Y H:H:s') }}
-                    </div>
-                    <div class="card-body">
-                        <h2 class="card-tittle">Mesa No. {{$mesa->id}}</h2>
-                        <h5 class="card-title">Orden No. {{$orden[0]->id}}</h5>
-                        <button class="btn btn-primary float-right" id="sidebarToggle">Toggle Menu</button>
-                        <div class="card-text">
-                            <table class="table table-responsive">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th scope="col" style="width: 5%">#</th>
-                                        <th scope="col" style="width: 50%">Platillo</th>
-                                        <th scope="col" style="width: 15%">Cantidad</th>
-                                        <th scope="col" style="width: 20%">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <a href="#modal-closed" class="btn btn-secondary">Cerrar orden</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Siempre servicial, siempre atento
-                    </div>
-                </div>
+            <div class="card-body">
+                <h2 class="card-tittle">Mesa No. {{ $mesa->id }}</h2>
+                <h5 class="card-title">Orden No. {{ $orden[0]->id }}</h5>
+                <a class="btn btn-primary float-right" href="#Menu" >Menu</a>
+                <table class="table table-responsive" id="tableContent">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" style="width: 5%">#</th>
+                            <th scope="col" style="width: 50%">Platillo</th>
+                            <th scope="col" style="width: 15%">Cantidad</th>
+                            <th scope="col" style="width: 20%">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <a href="{{route('cerrarOrden', ['id_mesa' => $mesa->id,'id_orden' => $orden[0]->id])}}" class="btn btn-secondary">Cerrar orden</a>
+            </div>
+            <div class="card-footer text-muted">
+                Siempre servicial, siempre atento
             </div>
         </div>
     </div>
-    <!-- Core theme JS-->
-    <script src="{{asset('js/ordenView.js')}}"></script>
+    <div class="container mx-auto" style="background: #ffffff;border-radius: 8px;" id="Menu">
+        <input type="radio" id="TODOS" name="categories" value="TODOS" checked>
+        <input type="radio" id="HTML" name="categories" value="HTML">
+        <input type="radio" id="CSS" name="categories" value="CSS">
+
+        <div class="container-category">
+            <label for="TODOS">TODOS</label>
+            <label for="HTML">PLATILLOS</label>
+            <label for="CSS">BEBIDAS</label>
+        </div>
+        <div class="posts">
+            @foreach ($platillos as $platillo)
+                <div class="post" data-category="{{ $platillo->tipo_alimento_id == 1 ? 'HTML' : 'CSS' }}">
+                    <x-platillo-card nombre="{{ $platillo->nombre }}" descripcion="{{ $platillo->descripcion }}"
+                        precio="{{ $platillo->precio }}" />
+                    <div class="form-group">
+                        <!--<form action="#" method="POST" id="form_add_plato">-->
+                            <input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}">
+                            <!--<input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}"> id del usuario-->
+                            <input type="hidden" name="id_platillo" id="id_platillo{{$platillo->id}}" value="{{$platillo->id}}">
+                            <input type="hidden" name="nombre" id="nombre{{$platillo->id}}" value="{{$platillo->nombre}}">
+                            <input type="hidden" name="precio" id="precio{{$platillo->id}}" value="{{$platillo->precio}}">
+                            <input class="form-control" type="number" name="cantidad" id="cantidad{{$platillo->id}}" value=""
+                                placeholder="Cantidad" min="1">
+                            <textarea class="form-control" name="comentarios" id="comentarios{{$platillo->id}}"
+                                placeholder="Comentarios"></textarea>
+                            <p class="btn btn-primary form-control" href="" id="{{$platillo->id}}" onclick="agregarPlatillo(this)">Agregar</p>
+                        <!--</form>-->
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <!-- Core theme JS-->
+        <script src=" {{ asset('js/jquery-3.6.0.js') }}"></script>
+        <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('js/dataTables.bootstrap5.min.js')}}"></script>
+        <script src="{{ asset('js/ordenView.js') }}"></script>
 </x-principal-layout>

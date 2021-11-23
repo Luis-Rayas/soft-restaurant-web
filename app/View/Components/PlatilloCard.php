@@ -16,23 +16,12 @@ class PlatilloCard extends Component
     public $nombre;
     public $descripcion;
     public $precio;
-    public $img_path;
 
-    public function __construct(int $id = -1)
+    public function __construct($nombre, $descripcion, $precio)
     {
-        $platillo = Platillo::find($id);
-        if(isset($platillo)){
-            $this->nombre = $platillo->nombre;
-            $this->descripcion = $platillo->descripcion;
-            $this->precio = $platillo->precio;
-            $this->img_path = $platillo->img_path;
-        } else {
-            $this->nombre = '';
-            $this->descripcion = '';
-            $this->precio = '';
-            $this->img_path = '';
-        }
-
+        $this->nombre = $nombre;
+        $this->descripcion = $descripcion;
+        $this->precio = $precio;
     }
 
     /**

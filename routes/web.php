@@ -29,7 +29,6 @@ Route::post('mesas/store', [MesaController::class, 'store'])->name('mesaStore');
 Route::get('/mesas/edit/{id}', [MesaController::class, 'edit'])->name('mesaEdit');
 Route::post('mesas/update',[MesaController::class, 'update'])->name('mesaUpdate');
 Route::get('/mesas/{id_mesa}/orden', [MesaController::class, 'viewOrdenByMesa'])->name('viewOrdenAbierta');
-Route::get('/mesas/{id_mesa}/orden/{id_orden}/addPlatillos', [MesaController::class, 'addPlatillo'])->name('addPlatillo');
 Route::post('/mesas/delete', [MesaController::class, 'delete'])->name('mesaDelete');
 
 Route::get('/platillos', [PlatilloController::class, 'index'])->name('platilloIndex');
@@ -59,6 +58,7 @@ Route::get('/proveedores/{id}/viewMail', [ProveedorController::class, 'viewMail'
 Route::get('/proveedores/{id}/sendMail', [ProveedorController::class, 'sendMail'])->name('proveedorMail');
 
 Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenIndex');
+Route::get('/ordenes/mesa/{id_mesa}/orden/{id_orden}', [OrdenController::class, 'cerrarOrden'])->name('cerrarOrden');
 Route::get('/ordenes/store/{id_mesa}', [OrdenController::class, 'store'])->name('ordenStore');
 Route::post('/ordenes/update/{id_mesa}/{id}', [OrdenController::class, 'update'])->name('ordenUpdate');
 

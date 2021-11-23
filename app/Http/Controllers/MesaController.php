@@ -67,14 +67,6 @@ class MesaController extends Controller
         return view('orden.orderView')->with(['platillos' => $platillos, 'mesa' => $mesa, 'orden' => $orden]);
     }
 
-
-
-    public function addPlatillo(int $id_mesa, int $id_orden)
-    {
-        $platillos = Platillo::all();
-        return view('orden.addPlatillo')->with(['platillos' => $platillos, 'id_mesa' => $id_mesa, 'id_orden' => $id_orden]);
-    }
-
     public function delete(Request $request)
     {
         $rows_affected = Mesa::destroy($request->id_mesa);

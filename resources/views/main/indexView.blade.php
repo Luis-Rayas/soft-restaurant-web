@@ -6,7 +6,7 @@
             <div class="row">
                 @foreach ($platillos as $platillo)
                     <div class="col-sm-4">
-                        <x-platillo-card id="{{ $platillo->id }}" />
+                        <x-platillo-card nombre="{{ $platillo->nombre }}" descripcion="{{$platillo->descripcion}}" precio="{{$platillo->precio}}"/>
                     </div>
                 @endforeach
             </div>
