@@ -1,5 +1,5 @@
 <x-principal-layout>
-    
+
     <div class="container" style="background: #ffffff;border-radius: 8px;">
         <div class="container">
             <div class="row">
@@ -9,9 +9,9 @@
                         <div class="form-group">
                             <form action="">
                                 <div class="form-control">
-                                    <input class="input-text" type="number" name="" id="" value="" placeholder="Cantidad">
-                                    <textarea class="input-textarea" name="comentarios" id="" placeholder="Comentarios"></textarea>
-                                    <a class="btn btn-primary" href="">Agregar</a>
+                                    <input class="form-control" type="number" name="" id="" value="" placeholder="Cantidad">
+                                    <textarea class="form-control" name="comentarios" id="" placeholder="Comentarios"></textarea>
+                                    <a class="btn btn-primary form-control" href="">Agregar</a>
                                 </div>
                             </form>
                         </div>

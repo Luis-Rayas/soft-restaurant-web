@@ -61,7 +61,6 @@ class MesaController extends Controller
 
     public function viewOrdenByMesa(int $mesa_id)
     {
-
         $platillos = Platillo::all();
         $mesa = Mesa::find($mesa_id);
         $orden = Orden::where('mesa_id', $mesa_id)->where('cerrada', false)->get();
