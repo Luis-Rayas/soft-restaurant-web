@@ -18,10 +18,16 @@ class OrdenDetalles extends Migration
             $table->id();
             $table->unsignedBigInteger('mesa_id');
             $table->foreign('mesa_id')->references('id')->on('mesas');
+            $table->unsignedBigInteger('orden_id');
+            $table->foreign('orden_id')->references('id')->on('orden');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('estadoOrden_id');
-            $table->timestamp('fecha');
+            $table->unsignedBigInteger('platillo_id');
+            $table->foreign('platillo_id')->references('id')->on('platillos');
+            $table->unsignedBigInteger('cant');
+            $table->float('subtotal');
+            $table->string('comentarios')->default("");
+            $table->timestamps();
             $table->softDeletes();
         });
     }

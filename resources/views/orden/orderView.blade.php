@@ -22,6 +22,15 @@
                             <th scope="col" style="width: 20%">Subtotal</th>
                         </tr>
                     </thead>
+                        <?php $i = 0?>
+                        @foreach ($orden[0]->platillos as $platillo)
+                        <tr>
+                            <td>{{$i++}}</td>
+                            <td>{{$platillo->nombre}}</td>
+                            <td>{{$platillo->pivot->cant}}</td>
+                            <td>{{$platillo->pivot->subtotal}}</td>
+                        </tr>
+                        @endforeach
                     <tbody>
                     </tbody>
                 </table>
@@ -50,9 +59,12 @@
                                 {{ $platillo->nombre }}
                             </div>
                             <div class="form-group">
-                                <!--<form action="#" method="POST" id="form_add_plato">-->
+                                <form action="{{route('ordenAddPlatillo')}}" method="POST" id="form_add_plato{{$platillo->id}}">
+                                    @csrf
                                     <input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}">
-                                    <!--<input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}"> id del usuario-->
+                                    <input type="hidden" name="id_usuario" id="id_usuario" value="{{0}}">
+                                    <input type="hidden" name="id_orden" id="id_orden" value="{{$orden[0]->id}}">
+                                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                     <input type="hidden" name="id_platillo" id="id_platillo{{$platillo->id}}" value="{{$platillo->id}}">
                                     <input type="hidden" name="nombre" id="nombre{{$platillo->id}}" value="{{$platillo->nombre}}">
                                     <input type="hidden" name="precio" id="precio{{$platillo->id}}" value="{{$platillo->precio}}">
@@ -60,8 +72,8 @@
                                         placeholder="Cantidad" min="1">
                                     <textarea class="form-control" name="comentarios" id="comentarios{{$platillo->id}}"
                                         placeholder="Comentarios"></textarea>
-                                    <p class="btn btn-primary form-control" href="" id="{{$platillo->id}}" onclick="agregarPlatillo(this)">Agregar</p>
-                                <!--</form>-->
+                                    <p class="btn btn-primary form-control" id="{{$platillo->id}}" onclick="agregarPlatillo(this)">Agregar</p>
+                                </form>
                             </div>
                         </div>
                 </div>

@@ -60,7 +60,7 @@ Route::get('/proveedores/{id}/sendMail', [ProveedorController::class, 'sendMail'
 Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenIndex');
 Route::get('/ordenes/mesa/{id_mesa}/orden/{id_orden}', [OrdenController::class, 'cerrarOrden'])->name('cerrarOrden');
 Route::get('/ordenes/store/{id_mesa}', [OrdenController::class, 'store'])->name('ordenStore');
-Route::post('/ordenes/update/{id_mesa}/{id}', [OrdenController::class, 'update'])->name('ordenUpdate');
+Route::post('/ordenes/addPlatillo', [OrdenController::class, 'addPlatilloOrden'])->name('ordenAddPlatillo');
 
 
 Route::get('/test', [OrdenController::class, 'test'])->name('test');

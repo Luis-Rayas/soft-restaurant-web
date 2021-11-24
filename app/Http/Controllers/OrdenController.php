@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mesa;
 use App\Models\Orden;
+use App\Models\Orden_detalle;
 use App\Models\Platillo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -36,6 +37,23 @@ class OrdenController extends Controller
         $mesa->disponible = false;
         $mesa->save();
         return redirect()->route('viewOrdenAbierta',$id_mesa);
+    }
+
+    public function addPlatilloOrden(Request $req)
+    {
+        dump($req);
+        $ordenDetalle = new Orden_detalle();
+        $ordenDetalle->mesa_id = $req->id_mesa;
+        $ordenDetalle->user_id = $req->id_usuario;
+        $ordenDetalle->orden_id = $req->id_orden;
+        $ordenDetalle->cant = $req->cantidad;
+        $ordenDetalle->subtotal = $req->cantidad * $req->precio;
+        $ordenDetalle->platillo_id = $req->id_platillo;
+        if(isset($req->comentarios))
+            $ordenDetalle->comentarios = $req->comentarios;
+        $ordenDetalle->save();
+        return $ordenDetalle->toJson();
+        #return json_encode($req);
     }
 
     public function cerrarOrden($id_mesa,$id_orden)
