@@ -58,6 +58,7 @@ Route::get('/proveedores/{id}/viewMail', [ProveedorController::class, 'viewMail'
 Route::get('/proveedores/{id}/sendMail', [ProveedorController::class, 'sendMail'])->name('proveedorMail');
 
 Route::get('/ordenes', [OrdenController::class, 'index'])->name('ordenIndex');
+Route::get('/ordenes/mesa/{id_mesa}/orden/{id_orden}/view', [OrdenController::class, 'verDetalle'])->name('ordenDetalle');
 Route::get('/ordenes/mesa/{id_mesa}/orden/{id_orden}', [OrdenController::class, 'cerrarOrden'])->name('cerrarOrden');
 Route::get('/ordenes/store/{id_mesa}', [OrdenController::class, 'store'])->name('ordenStore');
 Route::post('/ordenes/addPlatillo', [OrdenController::class, 'addPlatilloOrden'])->name('ordenAddPlatillo');
