@@ -45,22 +45,25 @@
         <div class="posts">
             @foreach ($platillos as $platillo)
                 <div class="post" data-category="{{ $platillo->tipo_alimento_id == 1 ? 'HTML' : 'CSS' }}">
-                    <x-platillo-card nombre="{{ $platillo->nombre }}" descripcion="{{ $platillo->descripcion }}"
-                        precio="{{ $platillo->precio }}" />
-                    <div class="form-group">
-                        <!--<form action="#" method="POST" id="form_add_plato">-->
-                            <input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}">
-                            <!--<input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}"> id del usuario-->
-                            <input type="hidden" name="id_platillo" id="id_platillo{{$platillo->id}}" value="{{$platillo->id}}">
-                            <input type="hidden" name="nombre" id="nombre{{$platillo->id}}" value="{{$platillo->nombre}}">
-                            <input type="hidden" name="precio" id="precio{{$platillo->id}}" value="{{$platillo->precio}}">
-                            <input class="form-control" type="number" name="cantidad" id="cantidad{{$platillo->id}}" value=""
-                                placeholder="Cantidad" min="1">
-                            <textarea class="form-control" name="comentarios" id="comentarios{{$platillo->id}}"
-                                placeholder="Comentarios"></textarea>
-                            <p class="btn btn-primary form-control" href="" id="{{$platillo->id}}" onclick="agregarPlatillo(this)">Agregar</p>
-                        <!--</form>-->
-                    </div>
+                        <div class="card text-center m-2">
+                            <div class="card-header card-title h2">
+                                {{ $platillo->nombre }}
+                            </div>
+                            <div class="form-group">
+                                <!--<form action="#" method="POST" id="form_add_plato">-->
+                                    <input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}">
+                                    <!--<input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}"> id del usuario-->
+                                    <input type="hidden" name="id_platillo" id="id_platillo{{$platillo->id}}" value="{{$platillo->id}}">
+                                    <input type="hidden" name="nombre" id="nombre{{$platillo->id}}" value="{{$platillo->nombre}}">
+                                    <input type="hidden" name="precio" id="precio{{$platillo->id}}" value="{{$platillo->precio}}">
+                                    <input class="form-control" type="number" name="cantidad" id="cantidad{{$platillo->id}}" value=""
+                                        placeholder="Cantidad" min="1">
+                                    <textarea class="form-control" name="comentarios" id="comentarios{{$platillo->id}}"
+                                        placeholder="Comentarios"></textarea>
+                                    <p class="btn btn-primary form-control" href="" id="{{$platillo->id}}" onclick="agregarPlatillo(this)">Agregar</p>
+                                <!--</form>-->
+                            </div>
+                        </div>
                 </div>
             @endforeach
         </div>
