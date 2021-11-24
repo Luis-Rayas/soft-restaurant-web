@@ -30,7 +30,7 @@
                 </li>
             </ul>
 
-            <!-- Right Side -->
+            <!-- Right Side
             <div class="btn-group float-end">
                 <a href="#" class="dropdown-toggle text-decoration-none text-light" data-bs-toggle="dropdown">
                 <i class="bi bi-person-circle"></i>
@@ -45,7 +45,7 @@
                     </li>
                     <li><a href="#" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>Cerrar Sesión</a></li>
                 </ul>
-            </div>
+            </div>-->
         </div>
     </div>
 </nav>
