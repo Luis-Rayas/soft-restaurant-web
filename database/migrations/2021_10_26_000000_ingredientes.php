@@ -17,7 +17,6 @@ class Ingredientes extends Migration
         Schema::create('ingredientes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('unidad_medida');
             $table->integer('cantidad');
             $table->double('costo');
             $table->unsignedBigInteger('id_proveedor');

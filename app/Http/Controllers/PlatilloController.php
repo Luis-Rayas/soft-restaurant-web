@@ -32,8 +32,7 @@ class PlatilloController extends Controller
     {
         $request->validate([
             'platillo_name' => 'required',
-            'platillo_precio' => 'required|min:0',
-            'platilloImg' => 'image|mimes:jpeg,png,jpg'
+            'platillo_precio' => 'required|min:0'
         ]);
         $platillo = new Platillo();
         if(isset($request->id)){

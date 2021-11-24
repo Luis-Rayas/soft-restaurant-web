@@ -28,9 +28,11 @@
                             <a class='btn btn-lg btn-primary mx-1' href="{{ route('proveedorDelete', $proveedor->id, ) }}">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
-                            <a class='btn btn-lg btn-primary mx-1' href="">
+                            @if (isset($proveedor->contacto))
+                            <a class='btn btn-lg btn-primary mx-1' href="{{ route('proveedorMail', ['id'=>$proveedor->id]) }}">
                                 <i class="fas fa-envelope"></i>
                             </a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

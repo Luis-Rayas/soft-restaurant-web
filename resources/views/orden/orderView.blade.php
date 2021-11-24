@@ -69,9 +69,9 @@
                                     <input type="hidden" name="nombre" id="nombre{{$platillo->id}}" value="{{$platillo->nombre}}">
                                     <input type="hidden" name="precio" id="precio{{$platillo->id}}" value="{{$platillo->precio}}">
                                     <input class="form-control" type="number" name="cantidad" id="cantidad{{$platillo->id}}" value=""
-                                        placeholder="Cantidad" min="1">
-                                    <textarea class="form-control" name="comentarios" id="comentarios{{$platillo->id}}"
-                                        placeholder="Comentarios"></textarea>
+                                        placeholder="Cantidad" min="1" required>
+                                    <input type="hidden" class="form-control" name="comentarios" id="comentarios{{$platillo->id}}"
+                                        placeholder="Comentarios"></input>
                                     <p class="btn btn-primary form-control" id="{{$platillo->id}}" onclick="agregarPlatillo(this)">Agregar</p>
                                 </form>
                             </div>

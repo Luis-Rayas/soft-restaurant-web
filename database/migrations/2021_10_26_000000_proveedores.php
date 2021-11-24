@@ -17,9 +17,9 @@ class Proveedores extends Migration
         Schema::create('proveedores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('rfc')->nullable(true);
+            $table->string('rfc')->nullable(true)->default('XXAX010101');
             $table->string('direccion')->nullable(true);
-            $table->string('contacto');
+            $table->string('contacto')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });

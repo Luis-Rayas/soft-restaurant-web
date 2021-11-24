@@ -7,6 +7,9 @@
         @else
             <h1>Proveedor No. {{$proveedor->id}}</h1>
         @endif
+        @error('nombre')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <form method="POST" action="{{ route('proveedorStore')}}">
             @csrf
             <input type="hidden" name="id" @if (isset($proveedor) && isset($proveedor->id))
@@ -19,7 +22,7 @@
                     placeholder="Nombre del proveedor" @if (isset($proveedor) && isset($proveedor->id))
                 value="{{ $proveedor->nombre }}"
                 @endif
-                >
+                required>
             </div>
             <div class="form-group">
                 <label for="rfc">RFC</label>

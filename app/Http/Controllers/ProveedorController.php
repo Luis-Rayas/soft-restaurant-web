@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ProveedorMail;
 use App\Models\Proveedor;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -23,7 +24,8 @@ class ProveedorController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([]);
+
+        $request->validate(['nombre'=>'required']);
         $proveedor = new Proveedor();
         if(isset($request->id)){
             $proveedor = Proveedor::find($request->id);
@@ -49,8 +51,15 @@ class ProveedorController extends Controller
         return redirect()->route('proveedorIndex');
     }
 
-    public function sendMail()
+    public function sendMail($id)
     {
-        Mail::to('pedro@test.com')->send(new ProveedorMail(""));
+        $proveedor = Proveedor::find($id);
+        if(isset($proveedor->contacto)){
+            Mail::to($proveedor->contacto)->send(new ProveedorMail($id));
+            $correoMessage = "Correo enviado con exito";
+        } else {
+            $correoMessage = "No hay correo vinculado a este proveedor";
+        }
+        return redirect()->route('proveedorIndex')->with(['correoMessage' => $correoMessage]);
     }
 }

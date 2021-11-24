@@ -1,7 +1,12 @@
 <x-principal-layout>
     <x-nav-bar />
     <link src="{{asset('css/dataTables.bootstrap5.min.css')}}"/>
-
+    @error('platillo_name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    @error('platillo_precio')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="container">
         <div class="d-flex justify-content-center">
         </div>
@@ -10,7 +15,7 @@
             <input type="hidden" name="id" @if (isset($platillo) && isset($platillo->id))
             value="{{ $platillo->id }}"
             @endif
-            >
+            required>
             <div class="form-group">
                 <label for="formFile" class="form-label">Tipo de Platillo</label>
                 <select name="tipo_alimento" id="" class="form-control">
@@ -28,7 +33,7 @@
                     placeholder="Nombre de platillo" @if (isset($platillo) && isset($platillo->id))
                 value="{{ $platillo->nombre }}"
                 @endif
-                requiered>
+                required>
             </div>
             <div class="form-group">
                 <label for="descripcion">Descripción del platillo</label>
@@ -39,7 +44,7 @@
                 <input type="number" name="platillo_precio" class="form-control" id="platillo_precio" placeholder="0.0"
                     @if (isset($platillo) && isset($platillo->id))
                         value="{{ $platillo->precio }}"
-                @endif requiered min="1">
+                @endif required min="1">
             </div>
             <label for="">Ingredientes del platillo</label>
             <div class="form-group">
