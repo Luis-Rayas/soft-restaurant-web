@@ -132,4 +132,11 @@ $(document).ready(function () {
             },
         },
     });
+    $('#btnCerrarOrden').click(function (event) {
+        var id_orden = $('#id_orden').val();
+        var id_mesa = $('#id_mesa').val();
+        var win = window.open('/ticket/' + id_mesa+"/"+id_orden, '_blank');
+        // Cambiar el foco al nuevo tab (punto opcional)
+        win.focus();
+    })
 });

@@ -34,7 +34,7 @@
                     <tbody>
                     </tbody>
                 </table>
-                <a href="{{route('cerrarOrden', ['id_mesa' => $mesa->id,'id_orden' => $orden[0]->id])}}" class="btn btn-secondary">Cerrar orden</a>
+                <a href="{{route('cerrarOrden', ['id_mesa' => $mesa->id,'id_orden' => $orden[0]->id])}}" class="btn btn-secondary" id="btnCerrarOrden">Cerrar orden</a>
             </div>
             <div class="card-footer text-muted">
                 Siempre servicial, siempre atento

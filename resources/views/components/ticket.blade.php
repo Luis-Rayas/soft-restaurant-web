@@ -55,30 +55,51 @@ img {
         {{ date('d/m/Y')}} <br>
         {{ date('H:i:s')}} Hrs
     </p>
+    <p class="centrado">
+        Mesa: {{ $mesa->id }} <br>
+        Orden No. {{ $orden[0]->id }}
+    </p>
     <table>
         <thead>
             <tr>
-                <th class="cantidad">CANT</th>
+                <th class="cantidad">#</th>
                 <th class="producto">PRODUCTO</th>
+                <th class="producto">CANT</th>
                 <th class="precio">$$</th>
             </tr>
         </thead>
         <tbody>
-            @for($i = 0; $i<10; $i++)
+            <?php $i = 1?>
+            @foreach ($orden[0]->platillos as $platillo)
             <tr>
-                <td class="cantidad">1.00</td>
-                <td class="producto">CHEETOS VERDES 80 G</td>
-                <td class="precio">$8.50</td>
+                <td>{{$i++}}</td>
+                <td>{{$platillo->nombre}}</td>
+                <td>{{$platillo->pivot->cant}}</td>
+                <td>{{$platillo->pivot->subtotal}}</td>
             </tr>
-            @endfor
+            @endforeach
             <tr>
+                <td></td>
                 <td class="cantidad"></td>
-                <td class="producto">TOTAL</td>
-                <td class="precio">$28.50</td>
+                <td class="producto">TOTAL</td><?php $total = 0;?>
+                @foreach ($orden[0]->platillos as $platillo)
+                    <?php $total = $total + $platillo->pivot->subtotal; ?>
+                @endforeach
+                <td class="total">{{$total}}</td>
             </tr>
         </tbody>
     </table>
     <br><br>
-    <p class="centrado">¡GRACIAS POR SU COMPRA!
+    <p class="centrado">¡GRACIAS POR SU VISITA!
         <br>parzibyte.me</p>
 </div>
+<script>
+    function printHTML() {
+    if (window.print) {
+        window.print();
+    }
+}
+document.addEventListener("DOMContentLoaded", function(event) {
+  printHTML();
+});
+</script>

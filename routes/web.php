@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('mainIndex');
-Route::get('/ticket', [MainController::class, 'printTicket'])->name('printTicket');
+Route::get('/ticket/{id_mesa}/{id_orden}', [MainController::class, 'printTicket'])->name('printTicket');
 
 Route::get('/mesas', [MesaController::class, 'index'])->name('mesaIndex');
 Route::get('/mesas/view/{id}', [MesaController::class, 'findById'])->name('mesaView');

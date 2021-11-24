@@ -21,7 +21,7 @@
                             <th scope="col" style="width: 20%">Subtotal</th>
                         </tr>
                     </thead>
-                        <?php $i = 0?>
+                        <?php $i = 1?>
                         @foreach ($orden[0]->platillos as $platillo)
                         <tr>
                             <td>{{$i++}}</td>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mesa;
+use App\Models\Orden;
 use App\Models\Platillo;
 use Illuminate\Http\Request;
 
@@ -13,8 +15,10 @@ class MainController extends Controller
         return view('main.indexView')->with(['platillos' => $platillos]);
     }
 
-    public function printTicket(/*int $mesa_id, int $orden_id*/)
+    public function printTicket($id_mesa, $id_orden)
     {
-        return view('components.ticket');
+        $mesa = Mesa::find($id_mesa);
+        $orden = Orden::where('mesa_id', $id_mesa)->where('id', $id_orden)->get();
+        return view('components.ticket')->with([ 'mesa' => $mesa, 'orden' => $orden]);
     }
 }
