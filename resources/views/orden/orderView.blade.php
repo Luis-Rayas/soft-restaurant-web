@@ -7,6 +7,7 @@
         <div class="card text-center">
             <div class="card-header">
                 Fecha: <br>
+                <?php date_default_timezone_set('America/Mexico_City');?>
                 {{ date('d/m/Y H:H:s') }}
             </div>
             <div class="card-body">
