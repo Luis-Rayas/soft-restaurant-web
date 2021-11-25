@@ -22,7 +22,8 @@ function agregarIngrediente(table) {
     }
 }
 
-function eliminarIngrediente(table) {
+function eliminarIngrediente() {
+    var table = $("#ingr_table").DataTable();
     $('#form_platillo tbody').on( 'click', 'span', function () {
         table
             .row( $(this).parents('tr') )
@@ -34,8 +35,8 @@ function eliminarIngrediente(table) {
 function botonesOPC(id_ingrediente) {
     return (
         "<td>" +
-        '<span class="btn btn-lg btn-primary mx-1" id="btnBorrar">' +
-        '<i class="fas fa-trash-alt"  id="btnBorrar"></i>' +
+        '<span class="btn btn-lg btn-primary mx-1" id="btnBorrar" onclick="eliminarIngrediente()">' +
+        '<i class="fas fa-trash-alt"  id="btnBorrar" onclick="eliminarIngrediente()"></i>' +
         "</span>" +
         "</td>"
     );
@@ -120,9 +121,5 @@ $(document).ready(function () {
 
     $('#btn_ingrediente_add').click(function (event) {
         agregarIngrediente(table);
-    });
-
-    $('#btnBorrar').click(function (event) {
-        eliminarIngrediente(table);
     });
 });

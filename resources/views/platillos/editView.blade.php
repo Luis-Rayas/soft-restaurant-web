@@ -1,6 +1,7 @@
 <x-principal-layout>
     <x-nav-bar />
     <link src="{{asset('css/dataTables.bootstrap5.min.css')}}"/>
+
     @error('platillo_name')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
@@ -8,6 +9,11 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <div class="container">
+        @if (!isset($platillo) && !isset($platillo->id))
+            <h1>Nuevo platillo</h1>
+        @else
+            <h1>Proveedor No. {{$platillo->id}}</h1>
+        @endif
         <div class="d-flex justify-content-center">
         </div>
         <form action="{{ route('platilloStore')}}" method="POST" id="form_platillo">
@@ -91,7 +97,7 @@
                     @endif
                 </tbody>
             </table>
-            <input class="btn btn-primary" type="submit" value="Guardar" id="btnSubmit"/>
+            <input class="btn btn-primary" type="submit" value="Guardar" id="btnSubmit" onclick="eliminarIngrediente()"/>
         </form>
     </div>
 
