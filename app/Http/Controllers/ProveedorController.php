@@ -60,6 +60,6 @@ class ProveedorController extends Controller
         } else {
             $correoMessage = "No hay correo vinculado a este proveedor";
         }
-        return redirect()->route('proveedorIndex')->with(['correoMessage' => $correoMessage]);
+        return redirect()->route('proveedorIndex')->with(['mensaje' => $correoMessage]);
     }
 }

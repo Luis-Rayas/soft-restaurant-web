@@ -91,7 +91,7 @@ img {
     </table>
     <br><br>
     <p class="centrado">¡GRACIAS POR SU VISITA!
-        <br>parzibyte.me</p>
+        </p>
 </div>
 <script>
     function printHTML() {

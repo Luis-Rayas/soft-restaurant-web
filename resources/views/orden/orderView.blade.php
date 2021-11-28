@@ -60,7 +60,7 @@
                                 {{ $platillo->nombre }}
                             </div>
                             <div class="form-group">
-                                <form action="{{route('ordenAddPlatillo')}}" method="POST" id="form_add_plato{{$platillo->id}}">
+                                <form action="{{route('ordenAddPlatillo')}}" method="POST" id="form_add_plato{{$platillo->id}}" onsubmit="event.preventDefault(); document.getElementById('{{$platillo->id}}').click();">
                                     @csrf
                                     <input type="hidden" name="id_mesa" id="id_mesa" value="{{$mesa->id}}">
                                     <input type="hidden" name="id_usuario" id="id_usuario" value="{{0}}">
@@ -72,7 +72,7 @@
                                     <input class="form-control" type="number" name="cantidad" id="cantidad{{$platillo->id}}" value=""
                                         placeholder="Cantidad" min="1" required>
                                     <input type="hidden" class="form-control" name="comentarios" id="comentarios{{$platillo->id}}"
-                                        placeholder="Comentarios"></input>
+                                        placeholder="Comentarios">
                                     <p class="btn btn-primary form-control" id="{{$platillo->id}}" onclick="agregarPlatillo(this)">Agregar</p>
                                 </form>
                             </div>
